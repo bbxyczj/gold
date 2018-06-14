@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldScoreOrderMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldScoreOrder" >
+    <result column="id" property="id" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="BIGINT" />
+    <result column="updated" property="updated" jdbcType="BIGINT" />
+    <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
+    <result column="pay_bill_no" property="payBillNo" jdbcType="VARCHAR" />
+    <result column="gift_name" property="giftName" jdbcType="VARCHAR" />
+    <result column="goods_id" property="goodsId" jdbcType="INTEGER" />
+    <result column="settlement" property="settlement" jdbcType="DECIMAL" />
+    <result column="score_amount" property="scoreAmount" jdbcType="INTEGER" />
+    <result column="gold_amount" property="goldAmount" jdbcType="DECIMAL" />
+    <result column="coupon_id" property="couponId" jdbcType="INTEGER" />
+    <result column="coupon_type" property="couponType" jdbcType="INTEGER" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="is_own" property="isOwn" jdbcType="BIT" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+  </resultMap>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldScoreOrder" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_score_order (created, updated, order_no, 
+      pay_bill_no, gift_name, goods_id, 
+      settlement, score_amount, gold_amount, 
+      coupon_id, coupon_type, status, 
+      user_id, phone, is_own, is_del
+      )
+    values (#{created,jdbcType=BIGINT}, #{updated,jdbcType=BIGINT}, #{orderNo,jdbcType=VARCHAR}, 
+      #{payBillNo,jdbcType=VARCHAR}, #{giftName,jdbcType=VARCHAR}, #{goodsId,jdbcType=INTEGER}, 
+      #{settlement,jdbcType=DECIMAL}, #{scoreAmount,jdbcType=INTEGER}, #{goldAmount,jdbcType=DECIMAL}, 
+      #{couponId,jdbcType=INTEGER}, #{couponType,jdbcType=INTEGER}, #{status,jdbcType=INTEGER}, 
+      #{userId,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{isOwn,jdbcType=BIT}, #{isDel,jdbcType=BIT}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldScoreOrder" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_score_order
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="orderNo != null" >
+        order_no,
+      </if>
+      <if test="payBillNo != null" >
+        pay_bill_no,
+      </if>
+      <if test="giftName != null" >
+        gift_name,
+      </if>
+      <if test="goodsId != null" >
+        goods_id,
+      </if>
+      <if test="settlement != null" >
+        settlement,
+      </if>
+      <if test="scoreAmount != null" >
+        score_amount,
+      </if>
+      <if test="goldAmount != null" >
+        gold_amount,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="isOwn != null" >
+        is_own,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="created != null" >
+        #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payBillNo != null" >
+        #{payBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="giftName != null" >
+        #{giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="settlement != null" >
+        #{settlement,jdbcType=DECIMAL},
+      </if>
+      <if test="scoreAmount != null" >
+        #{scoreAmount,jdbcType=INTEGER},
+      </if>
+      <if test="goldAmount != null" >
+        #{goldAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isOwn != null" >
+        #{isOwn,jdbcType=BIT},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+</mapper>

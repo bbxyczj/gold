@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>com.anve.gold</groupId>
+    <artifactId>gold</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0-SNAPSHOT</version>
+    <modules>
+        <module>gold-web</module>
+        <module>gold-hessian</module>
+        <module>gold-domain</module>
+        <module>gold-service</module>
+        <module>gold-iface</module>
+        <module>gold-common</module>
+    </modules>
+
+    <properties>
+
+        <gold.project.version>1.0-SNAPSHOT</gold.project.version>
+        <lombok.version>1.16.20</lombok.version>
+        <spring.version>5.0.6.RELEASE</spring.version>
+        <mysql.version>6.0.6</mysql.version>
+        <mybatis.version>3.4.6</mybatis.version>
+        <mybatis.gen.version>1.3.2</mybatis.gen.version>
+        <mybatis-spring.version>1.3.2</mybatis-spring.version>
+        <pagehelper.version>5.1.3</pagehelper.version>
+        <druid.version>1.1.9</druid.version>
+        <jedis.version>2.9.0</jedis.version>
+        <rocketmq.version>4.2.0</rocketmq.version>
+        <servlet.version>3.0.1</servlet.version>
+        <local.repo.host>http://10.0.1.49:8081</local.repo.host>
+    </properties>
+
+
+    <repositories>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <url>${local.repo.host}/content/repositories/releases/</url>
+        </repository>
+    </repositories>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>${local.repo.host}/content/repositories/snapshots/</url>
+        </pluginRepository>
+        <pluginRepository>
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <url>${local.repo.host}/content/repositories/releases/</url>
+        </pluginRepository>
+    </pluginRepositories>
+
+
+    <distributionManagement>
+        <repository>
+            <id>releases</id>
+            <name>Nexus Release Repository</name>
+            <url>${local.repo.host}/content/repositories/releases/</url>
+        </repository>
+        <snapshotRepository>
+            <id>snapshots</id>
+            <name>Nexus Snapshot Repository</name>
+            <url>${local.repo.host}/content/repositories/snapshots/</url>
+        </snapshotRepository>
+    </distributionManagement>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <profile.active>dev</profile.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>test</id>
+            <properties>
+                <profile.active>test</profile.active>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <profile.active>prod</profile.active>
+            </properties>
+        </profile>
+    </profiles>
+
+
+    <build>
+        <finalName>gold</finalName>
+        <plugins>
+            <!--使用mvn source:jar生成src-->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-source-plugin</artifactId>
+                <version>2.2</version>
+                <executions>
+                    <execution>
+                        <id>attach-sources</id>
+                        <goals>
+                            <goal>jar</goal>
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <configuration>
+                    <source>1.8</source>
+                    <target>1.8</target>
+                </configuration>
+            </plugin>
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-war-plugin</artifactId>
+                <configuration>
+                    <!-- 激活spring profile -->
+                    <webResources>
+                        <resource>
+                            <filtering>true</filtering>
+                            <directory>src/main/webapp</directory>
+                            <includes>
+                                <include>**/web.xml</include>
+                            </includes>
+                        </resource>
+                    </webResources>
+                    <warSourceDirectory>src/main/webapp</warSourceDirectory>
+                    <webXml>src/main/webapp/WEB-INF/web.xml</webXml>
+                </configuration>
+            </plugin>
+
+
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-surefire-plugin</artifactId>
+                <version>2.20</version>
+                <configuration>
+                    <!--跳过测试-->
+                    <skipTests>true</skipTests>
+                </configuration>
+            </plugin>
+        </plugins>
+
+        <resources>
+            <resource>
+                <!-- 编译发布时连同非java文件一同发布 -->
+                <directory>${basedir}/src/main/java</directory>
+                <excludes>
+                    <exclude>**/*.java</exclude>
+                </excludes>
+            </resource>
+            <resource>
+                <directory>${basedir}/src/main/resources</directory>
+            </resource>
+        </resources>
+    </build>
+
+
+
+
+</project>

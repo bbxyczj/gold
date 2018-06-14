@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.anve.gold.domain.dao.GoldAccountMapper">
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldAccount">
+    <result column="id" jdbcType="INTEGER" property="id" />
+    <result column="card_num" jdbcType="VARCHAR" property="cardNum" />
+    <result column="user_id" jdbcType="INTEGER" property="userId" />
+    <result column="acct_type" jdbcType="INTEGER" property="acctType" />
+    <result column="balance" jdbcType="DECIMAL" property="balance" />
+    <result column="avail_balance" jdbcType="DECIMAL" property="availBalance" />
+    <result column="froze_balance" jdbcType="DECIMAL" property="frozeBalance" />
+    <result column="status" jdbcType="INTEGER" property="status" />
+    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
+    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
+    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
+    <result column="acct_version" jdbcType="INTEGER" property="acctVersion" />
+  </resultMap>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldAccount">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_account (card_num, user_id, acct_type, 
+      balance, avail_balance, froze_balance, 
+      status, delete_flag, create_time, 
+      update_time, acct_version)
+    values (#{cardNum,jdbcType=VARCHAR}, #{userId,jdbcType=INTEGER}, #{acctType,jdbcType=INTEGER}, 
+      #{balance,jdbcType=DECIMAL}, #{availBalance,jdbcType=DECIMAL}, #{frozeBalance,jdbcType=DECIMAL}, 
+      #{status,jdbcType=INTEGER}, #{deleteFlag,jdbcType=BIT}, #{createTime,jdbcType=VARCHAR}, 
+      #{updateTime,jdbcType=VARCHAR}, #{acctVersion,jdbcType=INTEGER})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldAccount">
+    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_account
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="cardNum != null">
+        card_num,
+      </if>
+      <if test="userId != null">
+        user_id,
+      </if>
+      <if test="acctType != null">
+        acct_type,
+      </if>
+      <if test="balance != null">
+        balance,
+      </if>
+      <if test="availBalance != null">
+        avail_balance,
+      </if>
+      <if test="frozeBalance != null">
+        froze_balance,
+      </if>
+      <if test="status != null">
+        status,
+      </if>
+      <if test="deleteFlag != null">
+        delete_flag,
+      </if>
+      <if test="createTime != null">
+        create_time,
+      </if>
+      <if test="updateTime != null">
+        update_time,
+      </if>
+      <if test="acctVersion != null">
+        acct_version,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="cardNum != null">
+        #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null">
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="acctType != null">
+        #{acctType,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null">
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="availBalance != null">
+        #{availBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="frozeBalance != null">
+        #{frozeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null">
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="deleteFlag != null">
+        #{deleteFlag,jdbcType=BIT},
+      </if>
+      <if test="createTime != null">
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null">
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="acctVersion != null">
+        #{acctVersion,jdbcType=INTEGER},
+      </if>
+    </trim>
+  </insert>
+</mapper>
