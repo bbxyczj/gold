@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldSerialMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldSerial" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="serial_no" property="serialNo" jdbcType="VARCHAR" />
+    <result column="serial_type" property="serialType" jdbcType="INTEGER" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+    <result column="acct_type" property="acctType" jdbcType="INTEGER" />
+    <result column="cd_flag" property="cdFlag" jdbcType="BIT" />
+    <result column="amount" property="amount" jdbcType="DECIMAL" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="busi_type" property="busiType" jdbcType="VARCHAR" />
+    <result column="sub_busi_type" property="subBusiType" jdbcType="VARCHAR" />
+    <result column="busi_seq_no" property="busiSeqNo" jdbcType="VARCHAR" />
+    <result column="busi_amount" property="busiAmount" jdbcType="DECIMAL" />
+    <result column="busi_desc" property="busiDesc" jdbcType="VARCHAR" />
+    <result column="summary" property="summary" jdbcType="VARCHAR" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="BIT" />
+    <result column="ori_serial_no" property="oriSerialNo" jdbcType="VARCHAR" />
+    <result column="pay_order_no" property="payOrderNo" jdbcType="VARCHAR" />
+    <result column="refunded_amount" property="refundedAmount" jdbcType="DECIMAL" />
+    <result column="sys_id" property="sysId" jdbcType="VARCHAR" />
+    <result column="frozet_ime" property="frozetIme" jdbcType="BIGINT" />
+    <result column="refund_id" property="refundId" jdbcType="VARCHAR" />
+    <result column="busi_factor" property="busiFactor" jdbcType="INTEGER" />
+    <result column="item_factor" property="itemFactor" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, serial_no, serial_type, user_id, card_num, acct_type, cd_flag, amount, balance, 
+    busi_type, sub_busi_type, busi_seq_no, busi_amount, busi_desc, summary, status, create_time, 
+    update_time, delete_flag, ori_serial_no, pay_order_no, refunded_amount, sys_id, frozet_ime, 
+    refund_id, busi_factor, item_factor
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_serial_0
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_serial_0
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldSerial" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_serial_0 (serial_no, serial_type, user_id, 
+      card_num, acct_type, cd_flag, 
+      amount, balance, busi_type, 
+      sub_busi_type, busi_seq_no, busi_amount, 
+      busi_desc, summary, status, 
+      create_time, update_time, delete_flag, 
+      ori_serial_no, pay_order_no, refunded_amount, 
+      sys_id, frozet_ime, refund_id, 
+      busi_factor, item_factor)
+    values (#{serialNo,jdbcType=VARCHAR}, #{serialType,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, 
+      #{cardNum,jdbcType=VARCHAR}, #{acctType,jdbcType=INTEGER}, #{cdFlag,jdbcType=BIT}, 
+      #{amount,jdbcType=DECIMAL}, #{balance,jdbcType=DECIMAL}, #{busiType,jdbcType=VARCHAR}, 
+      #{subBusiType,jdbcType=VARCHAR}, #{busiSeqNo,jdbcType=VARCHAR}, #{busiAmount,jdbcType=DECIMAL}, 
+      #{busiDesc,jdbcType=VARCHAR}, #{summary,jdbcType=VARCHAR}, #{status,jdbcType=INTEGER}, 
+      #{createTime,jdbcType=VARCHAR}, #{updateTime,jdbcType=VARCHAR}, #{deleteFlag,jdbcType=BIT}, 
+      #{oriSerialNo,jdbcType=VARCHAR}, #{payOrderNo,jdbcType=VARCHAR}, #{refundedAmount,jdbcType=DECIMAL}, 
+      #{sysId,jdbcType=VARCHAR}, #{frozetIme,jdbcType=BIGINT}, #{refundId,jdbcType=VARCHAR}, 
+      #{busiFactor,jdbcType=INTEGER}, #{itemFactor,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldSerial" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_serial_0
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        serial_no,
+      </if>
+      <if test="serialType != null" >
+        serial_type,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="cardNum != null" >
+        card_num,
+      </if>
+      <if test="acctType != null" >
+        acct_type,
+      </if>
+      <if test="cdFlag != null" >
+        cd_flag,
+      </if>
+      <if test="amount != null" >
+        amount,
+      </if>
+      <if test="balance != null" >
+        balance,
+      </if>
+      <if test="busiType != null" >
+        busi_type,
+      </if>
+      <if test="subBusiType != null" >
+        sub_busi_type,
+      </if>
+      <if test="busiSeqNo != null" >
+        busi_seq_no,
+      </if>
+      <if test="busiAmount != null" >
+        busi_amount,
+      </if>
+      <if test="busiDesc != null" >
+        busi_desc,
+      </if>
+      <if test="summary != null" >
+        summary,
+      </if>
+      <if test="status != null" >
+        status,
+      </if>
+      <if test="createTime != null" >
+        create_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag,
+      </if>
+      <if test="oriSerialNo != null" >
+        ori_serial_no,
+      </if>
+      <if test="payOrderNo != null" >
+        pay_order_no,
+      </if>
+      <if test="refundedAmount != null" >
+        refunded_amount,
+      </if>
+      <if test="sysId != null" >
+        sys_id,
+      </if>
+      <if test="frozetIme != null" >
+        frozet_ime,
+      </if>
+      <if test="refundId != null" >
+        refund_id,
+      </if>
+      <if test="busiFactor != null" >
+        busi_factor,
+      </if>
+      <if test="itemFactor != null" >
+        item_factor,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="serialNo != null" >
+        #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serialType != null" >
+        #{serialType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null" >
+        #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        #{acctType,jdbcType=INTEGER},
+      </if>
+      <if test="cdFlag != null" >
+        #{cdFlag,jdbcType=BIT},
+      </if>
+      <if test="amount != null" >
+        #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="busiType != null" >
+        #{busiType,jdbcType=VARCHAR},
+      </if>
+      <if test="subBusiType != null" >
+        #{subBusiType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiSeqNo != null" >
+        #{busiSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="busiAmount != null" >
+        #{busiAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="busiDesc != null" >
+        #{busiDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        #{deleteFlag,jdbcType=BIT},
+      </if>
+      <if test="oriSerialNo != null" >
+        #{oriSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderNo != null" >
+        #{payOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedAmount != null" >
+        #{refundedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="sysId != null" >
+        #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="frozetIme != null" >
+        #{frozetIme,jdbcType=BIGINT},
+      </if>
+      <if test="refundId != null" >
+        #{refundId,jdbcType=VARCHAR},
+      </if>
+      <if test="busiFactor != null" >
+        #{busiFactor,jdbcType=INTEGER},
+      </if>
+      <if test="itemFactor != null" >
+        #{itemFactor,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldSerial" >
+    update gold_serial_0
+    <set >
+      <if test="serialNo != null" >
+        serial_no = #{serialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="serialType != null" >
+        serial_type = #{serialType,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="cardNum != null" >
+        card_num = #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="acctType != null" >
+        acct_type = #{acctType,jdbcType=INTEGER},
+      </if>
+      <if test="cdFlag != null" >
+        cd_flag = #{cdFlag,jdbcType=BIT},
+      </if>
+      <if test="amount != null" >
+        amount = #{amount,jdbcType=DECIMAL},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="busiType != null" >
+        busi_type = #{busiType,jdbcType=VARCHAR},
+      </if>
+      <if test="subBusiType != null" >
+        sub_busi_type = #{subBusiType,jdbcType=VARCHAR},
+      </if>
+      <if test="busiSeqNo != null" >
+        busi_seq_no = #{busiSeqNo,jdbcType=VARCHAR},
+      </if>
+      <if test="busiAmount != null" >
+        busi_amount = #{busiAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="busiDesc != null" >
+        busi_desc = #{busiDesc,jdbcType=VARCHAR},
+      </if>
+      <if test="summary != null" >
+        summary = #{summary,jdbcType=VARCHAR},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=BIT},
+      </if>
+      <if test="oriSerialNo != null" >
+        ori_serial_no = #{oriSerialNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payOrderNo != null" >
+        pay_order_no = #{payOrderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="refundedAmount != null" >
+        refunded_amount = #{refundedAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="sysId != null" >
+        sys_id = #{sysId,jdbcType=VARCHAR},
+      </if>
+      <if test="frozetIme != null" >
+        frozet_ime = #{frozetIme,jdbcType=BIGINT},
+      </if>
+      <if test="refundId != null" >
+        refund_id = #{refundId,jdbcType=VARCHAR},
+      </if>
+      <if test="busiFactor != null" >
+        busi_factor = #{busiFactor,jdbcType=INTEGER},
+      </if>
+      <if test="itemFactor != null" >
+        item_factor = #{itemFactor,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldSerial" >
+    update gold_serial_0
+    set serial_no = #{serialNo,jdbcType=VARCHAR},
+      serial_type = #{serialType,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      card_num = #{cardNum,jdbcType=VARCHAR},
+      acct_type = #{acctType,jdbcType=INTEGER},
+      cd_flag = #{cdFlag,jdbcType=BIT},
+      amount = #{amount,jdbcType=DECIMAL},
+      balance = #{balance,jdbcType=DECIMAL},
+      busi_type = #{busiType,jdbcType=VARCHAR},
+      sub_busi_type = #{subBusiType,jdbcType=VARCHAR},
+      busi_seq_no = #{busiSeqNo,jdbcType=VARCHAR},
+      busi_amount = #{busiAmount,jdbcType=DECIMAL},
+      busi_desc = #{busiDesc,jdbcType=VARCHAR},
+      summary = #{summary,jdbcType=VARCHAR},
+      status = #{status,jdbcType=INTEGER},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      ori_serial_no = #{oriSerialNo,jdbcType=VARCHAR},
+      pay_order_no = #{payOrderNo,jdbcType=VARCHAR},
+      refunded_amount = #{refundedAmount,jdbcType=DECIMAL},
+      sys_id = #{sysId,jdbcType=VARCHAR},
+      frozet_ime = #{frozetIme,jdbcType=BIGINT},
+      refund_id = #{refundId,jdbcType=VARCHAR},
+      busi_factor = #{busiFactor,jdbcType=INTEGER},
+      item_factor = #{itemFactor,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

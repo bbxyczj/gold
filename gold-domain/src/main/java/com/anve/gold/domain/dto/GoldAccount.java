@@ -1,8 +1,9 @@
 package com.anve.gold.domain.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class GoldAccount {
+public class GoldAccount implements Serializable {
     private Integer id;
 
     private String cardNum;
@@ -26,6 +27,8 @@ public class GoldAccount {
     private String updateTime;
 
     private Integer acctVersion;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;

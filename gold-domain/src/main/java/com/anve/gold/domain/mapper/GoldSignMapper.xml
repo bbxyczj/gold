@@ -1,0 +1,199 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldSignMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldSign" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="sign_date" property="signDate" jdbcType="DATE" />
+    <result column="user_id" property="userId" jdbcType="BIGINT" />
+    <result column="sign_type" property="signType" jdbcType="INTEGER" />
+    <result column="gold_change" property="goldChange" jdbcType="DECIMAL" />
+    <result column="coupon_id" property="couponId" jdbcType="INTEGER" />
+    <result column="coupon_type" property="couponType" jdbcType="INTEGER" />
+    <result column="coupon_detail" property="couponDetail" jdbcType="VARCHAR" />
+    <result column="factor" property="factor" jdbcType="INTEGER" />
+    <result column="is_double" property="isDouble" jdbcType="BIT" />
+    <result column="especial_success" property="especialSuccess" jdbcType="BIT" />
+    <result column="is_especial" property="isEspecial" jdbcType="BIT" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="is_last" property="isLast" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sign_date, user_id, sign_type, gold_change, coupon_id, coupon_type, coupon_detail, 
+    factor, is_double, especial_success, is_especial, is_del, is_last
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_sign
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gold_sign
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldSign" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_sign (sign_date, user_id, sign_type, 
+      gold_change, coupon_id, coupon_type, 
+      coupon_detail, factor, is_double, 
+      especial_success, is_especial, is_del, 
+      is_last)
+    values (#{signDate,jdbcType=DATE}, #{userId,jdbcType=BIGINT}, #{signType,jdbcType=INTEGER}, 
+      #{goldChange,jdbcType=DECIMAL}, #{couponId,jdbcType=INTEGER}, #{couponType,jdbcType=INTEGER}, 
+      #{couponDetail,jdbcType=VARCHAR}, #{factor,jdbcType=INTEGER}, #{isDouble,jdbcType=BIT}, 
+      #{especialSuccess,jdbcType=BIT}, #{isEspecial,jdbcType=BIT}, #{isDel,jdbcType=BIT}, 
+      #{isLast,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldSign" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_sign
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="signDate != null" >
+        sign_date,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="signType != null" >
+        sign_type,
+      </if>
+      <if test="goldChange != null" >
+        gold_change,
+      </if>
+      <if test="couponId != null" >
+        coupon_id,
+      </if>
+      <if test="couponType != null" >
+        coupon_type,
+      </if>
+      <if test="couponDetail != null" >
+        coupon_detail,
+      </if>
+      <if test="factor != null" >
+        factor,
+      </if>
+      <if test="isDouble != null" >
+        is_double,
+      </if>
+      <if test="especialSuccess != null" >
+        especial_success,
+      </if>
+      <if test="isEspecial != null" >
+        is_especial,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="isLast != null" >
+        is_last,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="signDate != null" >
+        #{signDate,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="signType != null" >
+        #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="goldChange != null" >
+        #{goldChange,jdbcType=DECIMAL},
+      </if>
+      <if test="couponId != null" >
+        #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="couponDetail != null" >
+        #{couponDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="factor != null" >
+        #{factor,jdbcType=INTEGER},
+      </if>
+      <if test="isDouble != null" >
+        #{isDouble,jdbcType=BIT},
+      </if>
+      <if test="especialSuccess != null" >
+        #{especialSuccess,jdbcType=BIT},
+      </if>
+      <if test="isEspecial != null" >
+        #{isEspecial,jdbcType=BIT},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="isLast != null" >
+        #{isLast,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldSign" >
+    update gold_sign
+    <set >
+      <if test="signDate != null" >
+        sign_date = #{signDate,jdbcType=DATE},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=BIGINT},
+      </if>
+      <if test="signType != null" >
+        sign_type = #{signType,jdbcType=INTEGER},
+      </if>
+      <if test="goldChange != null" >
+        gold_change = #{goldChange,jdbcType=DECIMAL},
+      </if>
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="couponDetail != null" >
+        coupon_detail = #{couponDetail,jdbcType=VARCHAR},
+      </if>
+      <if test="factor != null" >
+        factor = #{factor,jdbcType=INTEGER},
+      </if>
+      <if test="isDouble != null" >
+        is_double = #{isDouble,jdbcType=BIT},
+      </if>
+      <if test="especialSuccess != null" >
+        especial_success = #{especialSuccess,jdbcType=BIT},
+      </if>
+      <if test="isEspecial != null" >
+        is_especial = #{isEspecial,jdbcType=BIT},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+      <if test="isLast != null" >
+        is_last = #{isLast,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldSign" >
+    update gold_sign
+    set sign_date = #{signDate,jdbcType=DATE},
+      user_id = #{userId,jdbcType=BIGINT},
+      sign_type = #{signType,jdbcType=INTEGER},
+      gold_change = #{goldChange,jdbcType=DECIMAL},
+      coupon_id = #{couponId,jdbcType=INTEGER},
+      coupon_type = #{couponType,jdbcType=INTEGER},
+      coupon_detail = #{couponDetail,jdbcType=VARCHAR},
+      factor = #{factor,jdbcType=INTEGER},
+      is_double = #{isDouble,jdbcType=BIT},
+      especial_success = #{especialSuccess,jdbcType=BIT},
+      is_especial = #{isEspecial,jdbcType=BIT},
+      is_del = #{isDel,jdbcType=BIT},
+      is_last = #{isLast,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

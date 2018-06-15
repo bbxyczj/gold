@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldItemRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldItemRule" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="BIGINT" />
+    <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+    <result column="sub_busi_type" property="subBusiType" jdbcType="INTEGER" />
+    <result column="item_id" property="itemId" jdbcType="BIGINT" />
+    <result column="factor" property="factor" jdbcType="INTEGER" />
+    <result column="consume_val" property="consumeVal" jdbcType="INTEGER" />
+    <result column="start_time" property="startTime" jdbcType="BIGINT" />
+    <result column="end_time" property="endTime" jdbcType="BIGINT" />
+    <result column="activity_info" property="activityInfo" jdbcType="VARCHAR" />
+    <result column="is_open" property="isOpen" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, created_time, updated_time, sub_busi_type, item_id, factor, consume_val, start_time, 
+    end_time, activity_info, is_open
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_item_rule
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gold_item_rule
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldItemRule" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_item_rule (created_time, updated_time, sub_busi_type, 
+      item_id, factor, consume_val, 
+      start_time, end_time, activity_info, 
+      is_open)
+    values (#{createdTime,jdbcType=BIGINT}, #{updatedTime,jdbcType=BIGINT}, #{subBusiType,jdbcType=INTEGER}, 
+      #{itemId,jdbcType=BIGINT}, #{factor,jdbcType=INTEGER}, #{consumeVal,jdbcType=INTEGER}, 
+      #{startTime,jdbcType=BIGINT}, #{endTime,jdbcType=BIGINT}, #{activityInfo,jdbcType=VARCHAR}, 
+      #{isOpen,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldItemRule" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_item_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="subBusiType != null" >
+        sub_busi_type,
+      </if>
+      <if test="itemId != null" >
+        item_id,
+      </if>
+      <if test="factor != null" >
+        factor,
+      </if>
+      <if test="consumeVal != null" >
+        consume_val,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="activityInfo != null" >
+        activity_info,
+      </if>
+      <if test="isOpen != null" >
+        is_open,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="subBusiType != null" >
+        #{subBusiType,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="factor != null" >
+        #{factor,jdbcType=INTEGER},
+      </if>
+      <if test="consumeVal != null" >
+        #{consumeVal,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="activityInfo != null" >
+        #{activityInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpen != null" >
+        #{isOpen,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldItemRule" >
+    update gold_item_rule
+    <set >
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="subBusiType != null" >
+        sub_busi_type = #{subBusiType,jdbcType=INTEGER},
+      </if>
+      <if test="itemId != null" >
+        item_id = #{itemId,jdbcType=BIGINT},
+      </if>
+      <if test="factor != null" >
+        factor = #{factor,jdbcType=INTEGER},
+      </if>
+      <if test="consumeVal != null" >
+        consume_val = #{consumeVal,jdbcType=INTEGER},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="activityInfo != null" >
+        activity_info = #{activityInfo,jdbcType=VARCHAR},
+      </if>
+      <if test="isOpen != null" >
+        is_open = #{isOpen,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldItemRule" >
+    update gold_item_rule
+    set created_time = #{createdTime,jdbcType=BIGINT},
+      updated_time = #{updatedTime,jdbcType=BIGINT},
+      sub_busi_type = #{subBusiType,jdbcType=INTEGER},
+      item_id = #{itemId,jdbcType=BIGINT},
+      factor = #{factor,jdbcType=INTEGER},
+      consume_val = #{consumeVal,jdbcType=INTEGER},
+      start_time = #{startTime,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      activity_info = #{activityInfo,jdbcType=VARCHAR},
+      is_open = #{isOpen,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,22 +1,36 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<mapper namespace="com.anve.gold.domain.dao.GoldAccountMapper">
-  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldAccount">
-    <result column="id" jdbcType="INTEGER" property="id" />
-    <result column="card_num" jdbcType="VARCHAR" property="cardNum" />
-    <result column="user_id" jdbcType="INTEGER" property="userId" />
-    <result column="acct_type" jdbcType="INTEGER" property="acctType" />
-    <result column="balance" jdbcType="DECIMAL" property="balance" />
-    <result column="avail_balance" jdbcType="DECIMAL" property="availBalance" />
-    <result column="froze_balance" jdbcType="DECIMAL" property="frozeBalance" />
-    <result column="status" jdbcType="INTEGER" property="status" />
-    <result column="delete_flag" jdbcType="BIT" property="deleteFlag" />
-    <result column="create_time" jdbcType="VARCHAR" property="createTime" />
-    <result column="update_time" jdbcType="VARCHAR" property="updateTime" />
-    <result column="acct_version" jdbcType="INTEGER" property="acctVersion" />
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldAccount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="card_num" property="cardNum" jdbcType="VARCHAR" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="acct_type" property="acctType" jdbcType="INTEGER" />
+    <result column="balance" property="balance" jdbcType="DECIMAL" />
+    <result column="avail_balance" property="availBalance" jdbcType="DECIMAL" />
+    <result column="froze_balance" property="frozeBalance" jdbcType="DECIMAL" />
+    <result column="status" property="status" jdbcType="INTEGER" />
+    <result column="delete_flag" property="deleteFlag" jdbcType="BIT" />
+    <result column="create_time" property="createTime" jdbcType="VARCHAR" />
+    <result column="update_time" property="updateTime" jdbcType="VARCHAR" />
+    <result column="acct_version" property="acctVersion" jdbcType="INTEGER" />
   </resultMap>
-  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldAccount">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <sql id="Base_Column_List" >
+    id, card_num, user_id, acct_type, balance, avail_balance, froze_balance, status, 
+    delete_flag, create_time, update_time, acct_version
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldAccount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into gold_account (card_num, user_id, acct_type, 
@@ -28,80 +42,134 @@
       #{status,jdbcType=INTEGER}, #{deleteFlag,jdbcType=BIT}, #{createTime,jdbcType=VARCHAR}, 
       #{updateTime,jdbcType=VARCHAR}, #{acctVersion,jdbcType=INTEGER})
   </insert>
-  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldAccount">
-    <selectKey keyProperty="id" order="AFTER" resultType="java.lang.Integer">
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldAccount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
     </selectKey>
     insert into gold_account
-    <trim prefix="(" suffix=")" suffixOverrides=",">
-      <if test="cardNum != null">
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="cardNum != null" >
         card_num,
       </if>
-      <if test="userId != null">
+      <if test="userId != null" >
         user_id,
       </if>
-      <if test="acctType != null">
+      <if test="acctType != null" >
         acct_type,
       </if>
-      <if test="balance != null">
+      <if test="balance != null" >
         balance,
       </if>
-      <if test="availBalance != null">
+      <if test="availBalance != null" >
         avail_balance,
       </if>
-      <if test="frozeBalance != null">
+      <if test="frozeBalance != null" >
         froze_balance,
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         status,
       </if>
-      <if test="deleteFlag != null">
+      <if test="deleteFlag != null" >
         delete_flag,
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         create_time,
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         update_time,
       </if>
-      <if test="acctVersion != null">
+      <if test="acctVersion != null" >
         acct_version,
       </if>
     </trim>
-    <trim prefix="values (" suffix=")" suffixOverrides=",">
-      <if test="cardNum != null">
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="cardNum != null" >
         #{cardNum,jdbcType=VARCHAR},
       </if>
-      <if test="userId != null">
+      <if test="userId != null" >
         #{userId,jdbcType=INTEGER},
       </if>
-      <if test="acctType != null">
+      <if test="acctType != null" >
         #{acctType,jdbcType=INTEGER},
       </if>
-      <if test="balance != null">
+      <if test="balance != null" >
         #{balance,jdbcType=DECIMAL},
       </if>
-      <if test="availBalance != null">
+      <if test="availBalance != null" >
         #{availBalance,jdbcType=DECIMAL},
       </if>
-      <if test="frozeBalance != null">
+      <if test="frozeBalance != null" >
         #{frozeBalance,jdbcType=DECIMAL},
       </if>
-      <if test="status != null">
+      <if test="status != null" >
         #{status,jdbcType=INTEGER},
       </if>
-      <if test="deleteFlag != null">
+      <if test="deleteFlag != null" >
         #{deleteFlag,jdbcType=BIT},
       </if>
-      <if test="createTime != null">
+      <if test="createTime != null" >
         #{createTime,jdbcType=VARCHAR},
       </if>
-      <if test="updateTime != null">
+      <if test="updateTime != null" >
         #{updateTime,jdbcType=VARCHAR},
       </if>
-      <if test="acctVersion != null">
+      <if test="acctVersion != null" >
         #{acctVersion,jdbcType=INTEGER},
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldAccount" >
+    update gold_account
+    <set >
+      <if test="cardNum != null" >
+        card_num = #{cardNum,jdbcType=VARCHAR},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="acctType != null" >
+        acct_type = #{acctType,jdbcType=INTEGER},
+      </if>
+      <if test="balance != null" >
+        balance = #{balance,jdbcType=DECIMAL},
+      </if>
+      <if test="availBalance != null" >
+        avail_balance = #{availBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="frozeBalance != null" >
+        froze_balance = #{frozeBalance,jdbcType=DECIMAL},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="deleteFlag != null" >
+        delete_flag = #{deleteFlag,jdbcType=BIT},
+      </if>
+      <if test="createTime != null" >
+        create_time = #{createTime,jdbcType=VARCHAR},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=VARCHAR},
+      </if>
+      <if test="acctVersion != null" >
+        acct_version = #{acctVersion,jdbcType=INTEGER},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldAccount" >
+    update gold_account
+    set card_num = #{cardNum,jdbcType=VARCHAR},
+      user_id = #{userId,jdbcType=INTEGER},
+      acct_type = #{acctType,jdbcType=INTEGER},
+      balance = #{balance,jdbcType=DECIMAL},
+      avail_balance = #{availBalance,jdbcType=DECIMAL},
+      froze_balance = #{frozeBalance,jdbcType=DECIMAL},
+      status = #{status,jdbcType=INTEGER},
+      delete_flag = #{deleteFlag,jdbcType=BIT},
+      create_time = #{createTime,jdbcType=VARCHAR},
+      update_time = #{updateTime,jdbcType=VARCHAR},
+      acct_version = #{acctVersion,jdbcType=INTEGER}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

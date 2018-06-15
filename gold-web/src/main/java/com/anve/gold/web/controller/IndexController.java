@@ -1,5 +1,6 @@
 package com.anve.gold.web.controller;
 
+import com.anve.gold.common.exception.GoldException;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -21,4 +22,14 @@ public class IndexController {
     public String getMo(int i){
         return i%30+"";
     }
+
+    @ResponseBody
+    @RequestMapping("/getEx")
+    public String getEx() throws GoldException {
+        throw new GoldException("系统异常","0001");
+    }
+
+
+
+
 }

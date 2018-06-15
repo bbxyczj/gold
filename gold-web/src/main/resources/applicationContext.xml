@@ -18,6 +18,7 @@
 
 
     <context:annotation-config/>
+    <mybatis:scan base-package="com.anve.gold.domain.dao"/>
 
     <context:component-scan base-package="com.anve.gold"/>
     <!--激活自动代理功能 -->
@@ -51,9 +52,14 @@
     <bean id="sqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
         <property name="dataSource" ref="dataSource"/>
         <property name="configLocation" value="classpath:mybatis-config.xml"/>
+        <property name="mapperLocations" value="classpath*:com/anve/gold/domain/mapper/*.xml"/>
     </bean>
 
-    <mybatis:scan base-package="com.anve.gold.domain"/>
+    <!-- Dao接口所在包名，Spring会自动查找其下的类 -->
+    <bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">
+        <property name="basePackage" value="com.anve.gold.domain.dao"/>
+        <property name="sqlSessionFactoryBeanName" value="sqlSessionFactory"/>
+    </bean>
 
 
     <!-- 事务 -->
@@ -61,8 +67,7 @@
           class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
         <property name="dataSource" ref="dataSource"/>
     </bean>
-
-    <tx:annotation-driven transaction-manager="transactionManager" proxy-target-class="true"/>
+    <tx:annotation-driven transaction-manager="transactionManager"/>
 
 
 
@@ -73,10 +78,10 @@
     </beans>
 
     <beans profile="test">
-        <context:property-placeholder location="classpath:dev/*.properties"/>
+        <context:property-placeholder location="classpath:test/*.properties"/>
     </beans>
 
     <beans profile="prod">
-        <context:property-placeholder location="classpath:dev/*.properties"/>
+        <context:property-placeholder location="classpath:prod/*.properties"/>
     </beans>
 </beans>

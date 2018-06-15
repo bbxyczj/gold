@@ -1,0 +1,150 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldScoreAccountMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldScoreAccount" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="created" property="created" jdbcType="BIGINT" />
+    <result column="updated" property="updated" jdbcType="BIGINT" />
+    <result column="user_id" property="userId" jdbcType="INTEGER" />
+    <result column="operator_type" property="operatorType" jdbcType="INTEGER" />
+    <result column="phone" property="phone" jdbcType="VARCHAR" />
+    <result column="score" property="score" jdbcType="INTEGER" />
+    <result column="is_own" property="isOwn" jdbcType="BIT" />
+    <result column="is_del" property="isDel" jdbcType="BIT" />
+    <result column="verify" property="verify" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, created, updated, user_id, operator_type, phone, score, is_own, is_del, verify
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_score_account
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_score_account
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldScoreAccount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_score_account (created, updated, user_id, 
+      operator_type, phone, score, 
+      is_own, is_del, verify)
+    values (#{created,jdbcType=BIGINT}, #{updated,jdbcType=BIGINT}, #{userId,jdbcType=INTEGER}, 
+      #{operatorType,jdbcType=INTEGER}, #{phone,jdbcType=VARCHAR}, #{score,jdbcType=INTEGER}, 
+      #{isOwn,jdbcType=BIT}, #{isDel,jdbcType=BIT}, #{verify,jdbcType=VARCHAR})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldScoreAccount" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_score_account
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="created != null" >
+        created,
+      </if>
+      <if test="updated != null" >
+        updated,
+      </if>
+      <if test="userId != null" >
+        user_id,
+      </if>
+      <if test="operatorType != null" >
+        operator_type,
+      </if>
+      <if test="phone != null" >
+        phone,
+      </if>
+      <if test="score != null" >
+        score,
+      </if>
+      <if test="isOwn != null" >
+        is_own,
+      </if>
+      <if test="isDel != null" >
+        is_del,
+      </if>
+      <if test="verify != null" >
+        verify,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="created != null" >
+        #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null" >
+        #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorType != null" >
+        #{operatorType,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isOwn != null" >
+        #{isOwn,jdbcType=BIT},
+      </if>
+      <if test="isDel != null" >
+        #{isDel,jdbcType=BIT},
+      </if>
+      <if test="verify != null" >
+        #{verify,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldScoreAccount" >
+    update gold_score_account
+    <set >
+      <if test="created != null" >
+        created = #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="operatorType != null" >
+        operator_type = #{operatorType,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="score != null" >
+        score = #{score,jdbcType=INTEGER},
+      </if>
+      <if test="isOwn != null" >
+        is_own = #{isOwn,jdbcType=BIT},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+      <if test="verify != null" >
+        verify = #{verify,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldScoreAccount" >
+    update gold_score_account
+    set created = #{created,jdbcType=BIGINT},
+      updated = #{updated,jdbcType=BIGINT},
+      user_id = #{userId,jdbcType=INTEGER},
+      operator_type = #{operatorType,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      score = #{score,jdbcType=INTEGER},
+      is_own = #{isOwn,jdbcType=BIT},
+      is_del = #{isDel,jdbcType=BIT},
+      verify = #{verify,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

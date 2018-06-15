@@ -1,0 +1,164 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldRuleMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldRule" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="BIGINT" />
+    <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+    <result column="busi_type" property="busiType" jdbcType="INTEGER" />
+    <result column="rule_type" property="ruleType" jdbcType="INTEGER" />
+    <result column="val" property="val" jdbcType="DECIMAL" />
+    <result column="base_plan" property="basePlan" jdbcType="DECIMAL" />
+    <result column="lower_val" property="lowerVal" jdbcType="DECIMAL" />
+    <result column="last_oper_user" property="lastOperUser" jdbcType="VARCHAR" />
+    <result column="del_flag" property="delFlag" jdbcType="BIT" />
+    <result column="open" property="open" jdbcType="BIT" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, created_time, updated_time, busi_type, rule_type, val, base_plan, lower_val, 
+    last_oper_user, del_flag, open
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_rule
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gold_rule
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldRule" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_rule (created_time, updated_time, busi_type, 
+      rule_type, val, base_plan, 
+      lower_val, last_oper_user, del_flag, 
+      open)
+    values (#{createdTime,jdbcType=BIGINT}, #{updatedTime,jdbcType=BIGINT}, #{busiType,jdbcType=INTEGER}, 
+      #{ruleType,jdbcType=INTEGER}, #{val,jdbcType=DECIMAL}, #{basePlan,jdbcType=DECIMAL}, 
+      #{lowerVal,jdbcType=DECIMAL}, #{lastOperUser,jdbcType=VARCHAR}, #{delFlag,jdbcType=BIT}, 
+      #{open,jdbcType=BIT})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldRule" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_rule
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="busiType != null" >
+        busi_type,
+      </if>
+      <if test="ruleType != null" >
+        rule_type,
+      </if>
+      <if test="val != null" >
+        val,
+      </if>
+      <if test="basePlan != null" >
+        base_plan,
+      </if>
+      <if test="lowerVal != null" >
+        lower_val,
+      </if>
+      <if test="lastOperUser != null" >
+        last_oper_user,
+      </if>
+      <if test="delFlag != null" >
+        del_flag,
+      </if>
+      <if test="open != null" >
+        open,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="busiType != null" >
+        #{busiType,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null" >
+        #{ruleType,jdbcType=INTEGER},
+      </if>
+      <if test="val != null" >
+        #{val,jdbcType=DECIMAL},
+      </if>
+      <if test="basePlan != null" >
+        #{basePlan,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerVal != null" >
+        #{lowerVal,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOperUser != null" >
+        #{lastOperUser,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="open != null" >
+        #{open,jdbcType=BIT},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldRule" >
+    update gold_rule
+    <set >
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="busiType != null" >
+        busi_type = #{busiType,jdbcType=INTEGER},
+      </if>
+      <if test="ruleType != null" >
+        rule_type = #{ruleType,jdbcType=INTEGER},
+      </if>
+      <if test="val != null" >
+        val = #{val,jdbcType=DECIMAL},
+      </if>
+      <if test="basePlan != null" >
+        base_plan = #{basePlan,jdbcType=DECIMAL},
+      </if>
+      <if test="lowerVal != null" >
+        lower_val = #{lowerVal,jdbcType=DECIMAL},
+      </if>
+      <if test="lastOperUser != null" >
+        last_oper_user = #{lastOperUser,jdbcType=VARCHAR},
+      </if>
+      <if test="delFlag != null" >
+        del_flag = #{delFlag,jdbcType=BIT},
+      </if>
+      <if test="open != null" >
+        open = #{open,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldRule" >
+    update gold_rule
+    set created_time = #{createdTime,jdbcType=BIGINT},
+      updated_time = #{updatedTime,jdbcType=BIGINT},
+      busi_type = #{busiType,jdbcType=INTEGER},
+      rule_type = #{ruleType,jdbcType=INTEGER},
+      val = #{val,jdbcType=DECIMAL},
+      base_plan = #{basePlan,jdbcType=DECIMAL},
+      lower_val = #{lowerVal,jdbcType=DECIMAL},
+      last_oper_user = #{lastOperUser,jdbcType=VARCHAR},
+      del_flag = #{delFlag,jdbcType=BIT},
+      open = #{open,jdbcType=BIT}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>

@@ -1,0 +1,153 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldBusiFactorMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldBusiFactor" >
+    <id column="id" property="id" jdbcType="INTEGER" />
+    <result column="sub_busi_type" property="subBusiType" jdbcType="INTEGER" />
+    <result column="factor" property="factor" jdbcType="INTEGER" />
+    <result column="content" property="content" jdbcType="VARCHAR" />
+    <result column="start_time" property="startTime" jdbcType="BIGINT" />
+    <result column="end_time" property="endTime" jdbcType="BIGINT" />
+    <result column="is_open" property="isOpen" jdbcType="BIT" />
+    <result column="created_time" property="createdTime" jdbcType="BIGINT" />
+    <result column="updated_time" property="updatedTime" jdbcType="BIGINT" />
+    <result column="last_oper_user" property="lastOperUser" jdbcType="VARCHAR" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, sub_busi_type, factor, content, start_time, end_time, is_open, created_time, 
+    updated_time, last_oper_user
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_busi_factor
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_busi_factor
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldBusiFactor" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_busi_factor (sub_busi_type, factor, content, 
+      start_time, end_time, is_open, 
+      created_time, updated_time, last_oper_user
+      )
+    values (#{subBusiType,jdbcType=INTEGER}, #{factor,jdbcType=INTEGER}, #{content,jdbcType=VARCHAR}, 
+      #{startTime,jdbcType=BIGINT}, #{endTime,jdbcType=BIGINT}, #{isOpen,jdbcType=BIT}, 
+      #{createdTime,jdbcType=BIGINT}, #{updatedTime,jdbcType=BIGINT}, #{lastOperUser,jdbcType=VARCHAR}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldBusiFactor" >
+    <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_busi_factor
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="subBusiType != null" >
+        sub_busi_type,
+      </if>
+      <if test="factor != null" >
+        factor,
+      </if>
+      <if test="content != null" >
+        content,
+      </if>
+      <if test="startTime != null" >
+        start_time,
+      </if>
+      <if test="endTime != null" >
+        end_time,
+      </if>
+      <if test="isOpen != null" >
+        is_open,
+      </if>
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updatedTime != null" >
+        updated_time,
+      </if>
+      <if test="lastOperUser != null" >
+        last_oper_user,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="subBusiType != null" >
+        #{subBusiType,jdbcType=INTEGER},
+      </if>
+      <if test="factor != null" >
+        #{factor,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="isOpen != null" >
+        #{isOpen,jdbcType=BIT},
+      </if>
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="lastOperUser != null" >
+        #{lastOperUser,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldBusiFactor" >
+    update gold_busi_factor
+    <set >
+      <if test="subBusiType != null" >
+        sub_busi_type = #{subBusiType,jdbcType=INTEGER},
+      </if>
+      <if test="factor != null" >
+        factor = #{factor,jdbcType=INTEGER},
+      </if>
+      <if test="content != null" >
+        content = #{content,jdbcType=VARCHAR},
+      </if>
+      <if test="startTime != null" >
+        start_time = #{startTime,jdbcType=BIGINT},
+      </if>
+      <if test="endTime != null" >
+        end_time = #{endTime,jdbcType=BIGINT},
+      </if>
+      <if test="isOpen != null" >
+        is_open = #{isOpen,jdbcType=BIT},
+      </if>
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updatedTime != null" >
+        updated_time = #{updatedTime,jdbcType=BIGINT},
+      </if>
+      <if test="lastOperUser != null" >
+        last_oper_user = #{lastOperUser,jdbcType=VARCHAR},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldBusiFactor" >
+    update gold_busi_factor
+    set sub_busi_type = #{subBusiType,jdbcType=INTEGER},
+      factor = #{factor,jdbcType=INTEGER},
+      content = #{content,jdbcType=VARCHAR},
+      start_time = #{startTime,jdbcType=BIGINT},
+      end_time = #{endTime,jdbcType=BIGINT},
+      is_open = #{isOpen,jdbcType=BIT},
+      created_time = #{createdTime,jdbcType=BIGINT},
+      updated_time = #{updatedTime,jdbcType=BIGINT},
+      last_oper_user = #{lastOperUser,jdbcType=VARCHAR}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+</mapper>

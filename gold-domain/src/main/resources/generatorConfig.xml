@@ -34,21 +34,79 @@
 
 
 
-        <!--<table schema="gold" tableName="gold_account" domainObjectName="GoldAccount"-->
-               <!--enableCountByExample="false" enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false" enableUpdateByExample="false"-->
-               <!--enableSelectByPrimaryKey="true"-->
-               <!--enableUpdateByPrimaryKey="true"-->
-               <!--enableDeleteByPrimaryKey="true">-->
-            <!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
-        <!--</table>-->
 
-        <!--<table schema="gold" tableName="gold_score_order" domainObjectName="GoldScoreOrder"-->
-               <!--enableCountByExample="false" enableDeleteByExample="false"-->
-               <!--enableSelectByExample="false" enableUpdateByExample="false">-->
-            <!--<generatedKey column="id" sqlStatement="MySql" identity="true" />-->
-        <!--</table>-->
+        <table schema="gold" tableName="gold_account" domainObjectName="GoldAccount"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_serial_0" domainObjectName="GoldSerial"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="config" domainObjectName="Config"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="keyword" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_busi_factor" domainObjectName="GoldBusiFactor"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_dict" domainObjectName="GoldDict"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="dict_key" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_item_rule" domainObjectName="GoldItemRule"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_rule" domainObjectName="GoldRule"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_notice" domainObjectName="GoldNotice"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
 
+        <table schema="gold" tableName="gold_score_account" domainObjectName="GoldScoreAccount"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_score_order" domainObjectName="GoldScoreOrder"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_score_operator" domainObjectName="GoldScoreOperator"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+
+        <table schema="gold" tableName="gold_score_gift" domainObjectName="GoldScoreGift"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_sign" domainObjectName="GoldSign"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
+        <table schema="gold" tableName="gold_stat_serial" domainObjectName="GoldStatSerial"
+               enableCountByExample="false" enableDeleteByExample="false"
+               enableSelectByExample="false" enableUpdateByExample="false">
+            <generatedKey column="id" sqlStatement="MySql" identity="true" />
+        </table>
 
 
         

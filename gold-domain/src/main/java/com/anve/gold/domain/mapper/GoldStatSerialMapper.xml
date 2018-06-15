@@ -1,0 +1,175 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.anve.gold.domain.dao.GoldStatSerialMapper" >
+  <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldStatSerial" >
+    <id column="id" property="id" jdbcType="BIGINT" />
+    <result column="created_time" property="createdTime" jdbcType="BIGINT" />
+    <result column="update_time" property="updateTime" jdbcType="BIGINT" />
+    <result column="stat_date" property="statDate" jdbcType="DATE" />
+    <result column="sub_busi_type" property="subBusiType" jdbcType="INTEGER" />
+    <result column="send" property="send" jdbcType="DECIMAL" />
+    <result column="used" property="used" jdbcType="DECIMAL" />
+    <result column="refund" property="refund" jdbcType="DECIMAL" />
+    <result column="cancel" property="cancel" jdbcType="DECIMAL" />
+    <result column="total_send" property="totalSend" jdbcType="DECIMAL" />
+    <result column="total_use" property="totalUse" jdbcType="DECIMAL" />
+    <result column="radio" property="radio" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    id, created_time, update_time, stat_date, sub_busi_type, send, used, refund, cancel, 
+    total_send, total_use, radio
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Long" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_stat_serial
+    where id = #{id,jdbcType=BIGINT}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Long" >
+    delete from gold_stat_serial
+    where id = #{id,jdbcType=BIGINT}
+  </delete>
+  <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldStatSerial" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_stat_serial (created_time, update_time, stat_date, 
+      sub_busi_type, send, used, 
+      refund, cancel, total_send, 
+      total_use, radio)
+    values (#{createdTime,jdbcType=BIGINT}, #{updateTime,jdbcType=BIGINT}, #{statDate,jdbcType=DATE}, 
+      #{subBusiType,jdbcType=INTEGER}, #{send,jdbcType=DECIMAL}, #{used,jdbcType=DECIMAL}, 
+      #{refund,jdbcType=DECIMAL}, #{cancel,jdbcType=DECIMAL}, #{totalSend,jdbcType=DECIMAL}, 
+      #{totalUse,jdbcType=DECIMAL}, #{radio,jdbcType=DECIMAL})
+  </insert>
+  <insert id="insertSelective" parameterType="com.anve.gold.domain.dto.GoldStatSerial" >
+    <selectKey resultType="java.lang.Long" keyProperty="id" order="AFTER" >
+      SELECT LAST_INSERT_ID()
+    </selectKey>
+    insert into gold_stat_serial
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="createdTime != null" >
+        created_time,
+      </if>
+      <if test="updateTime != null" >
+        update_time,
+      </if>
+      <if test="statDate != null" >
+        stat_date,
+      </if>
+      <if test="subBusiType != null" >
+        sub_busi_type,
+      </if>
+      <if test="send != null" >
+        send,
+      </if>
+      <if test="used != null" >
+        used,
+      </if>
+      <if test="refund != null" >
+        refund,
+      </if>
+      <if test="cancel != null" >
+        cancel,
+      </if>
+      <if test="totalSend != null" >
+        total_send,
+      </if>
+      <if test="totalUse != null" >
+        total_use,
+      </if>
+      <if test="radio != null" >
+        radio,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="createdTime != null" >
+        #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="statDate != null" >
+        #{statDate,jdbcType=DATE},
+      </if>
+      <if test="subBusiType != null" >
+        #{subBusiType,jdbcType=INTEGER},
+      </if>
+      <if test="send != null" >
+        #{send,jdbcType=DECIMAL},
+      </if>
+      <if test="used != null" >
+        #{used,jdbcType=DECIMAL},
+      </if>
+      <if test="refund != null" >
+        #{refund,jdbcType=DECIMAL},
+      </if>
+      <if test="cancel != null" >
+        #{cancel,jdbcType=DECIMAL},
+      </if>
+      <if test="totalSend != null" >
+        #{totalSend,jdbcType=DECIMAL},
+      </if>
+      <if test="totalUse != null" >
+        #{totalUse,jdbcType=DECIMAL},
+      </if>
+      <if test="radio != null" >
+        #{radio,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldStatSerial" >
+    update gold_stat_serial
+    <set >
+      <if test="createdTime != null" >
+        created_time = #{createdTime,jdbcType=BIGINT},
+      </if>
+      <if test="updateTime != null" >
+        update_time = #{updateTime,jdbcType=BIGINT},
+      </if>
+      <if test="statDate != null" >
+        stat_date = #{statDate,jdbcType=DATE},
+      </if>
+      <if test="subBusiType != null" >
+        sub_busi_type = #{subBusiType,jdbcType=INTEGER},
+      </if>
+      <if test="send != null" >
+        send = #{send,jdbcType=DECIMAL},
+      </if>
+      <if test="used != null" >
+        used = #{used,jdbcType=DECIMAL},
+      </if>
+      <if test="refund != null" >
+        refund = #{refund,jdbcType=DECIMAL},
+      </if>
+      <if test="cancel != null" >
+        cancel = #{cancel,jdbcType=DECIMAL},
+      </if>
+      <if test="totalSend != null" >
+        total_send = #{totalSend,jdbcType=DECIMAL},
+      </if>
+      <if test="totalUse != null" >
+        total_use = #{totalUse,jdbcType=DECIMAL},
+      </if>
+      <if test="radio != null" >
+        radio = #{radio,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldStatSerial" >
+    update gold_stat_serial
+    set created_time = #{createdTime,jdbcType=BIGINT},
+      update_time = #{updateTime,jdbcType=BIGINT},
+      stat_date = #{statDate,jdbcType=DATE},
+      sub_busi_type = #{subBusiType,jdbcType=INTEGER},
+      send = #{send,jdbcType=DECIMAL},
+      used = #{used,jdbcType=DECIMAL},
+      refund = #{refund,jdbcType=DECIMAL},
+      cancel = #{cancel,jdbcType=DECIMAL},
+      total_send = #{totalSend,jdbcType=DECIMAL},
+      total_use = #{totalUse,jdbcType=DECIMAL},
+      radio = #{radio,jdbcType=DECIMAL}
+    where id = #{id,jdbcType=BIGINT}
+  </update>
+</mapper>
