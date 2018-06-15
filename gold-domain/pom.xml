@@ -116,28 +116,7 @@
         </dependency>
 
 
-        <dependency>
-            <groupId>redis.clients</groupId>
-            <artifactId>jedis</artifactId>
-            <version>${jedis.version}</version>
-        </dependency>
 
-
-        <dependency>
-            <groupId>org.apache.rocketmq</groupId>
-            <artifactId>rocketmq-client</artifactId>
-            <version>${rocketmq.version}</version>
-            <exclusions>
-                <exclusion>
-                    <groupId>org.slf4j</groupId>
-                    <artifactId>slf4j-api</artifactId>
-                </exclusion>
-                <exclusion>
-                    <groupId>com.alibaba</groupId>
-                    <artifactId>fastjson</artifactId>
-                </exclusion>
-            </exclusions>
-        </dependency>
 
         <!-- LOGGING begin -->
         <dependency>
@@ -188,7 +167,8 @@
                     <dependency>
                         <groupId>mysql</groupId>
                         <artifactId>mysql-connector-java</artifactId>
-                        <version>${mysql.version}</version>
+                        <!--自动生成文件采用低版本-->
+                        <version>5.1.39</version>
                     </dependency>
                     <dependency>
                         <groupId>org.mybatis.generator</groupId>
@@ -209,12 +189,6 @@
                         <groupId>org.mybatis</groupId>
                         <artifactId>mybatis</artifactId>
                         <version>${mybatis.version}</version>
-                    </dependency>
-
-                    <dependency>
-                        <groupId>javax.servlet</groupId>
-                        <artifactId>javax.servlet-api</artifactId>
-                        <version>${servlet.version}</version>
                     </dependency>
                 </dependencies>
             </plugin>

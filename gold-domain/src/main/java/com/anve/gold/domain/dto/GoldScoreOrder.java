@@ -1,8 +1,9 @@
 package com.anve.gold.domain.dto;
 
+import java.io.Serializable;
 import java.math.BigDecimal;
 
-public class GoldScoreOrder {
+public class GoldScoreOrder implements Serializable {
     private Integer id;
 
     private Long created;
@@ -36,6 +37,8 @@ public class GoldScoreOrder {
     private Boolean isOwn;
 
     private Boolean isDel;
+
+    private static final long serialVersionUID = 1L;
 
     public Integer getId() {
         return id;

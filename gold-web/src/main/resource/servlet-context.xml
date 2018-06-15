@@ -23,7 +23,7 @@
     <mvc:interceptors>
         <mvc:interceptor>
             <mvc:mapping path="/**"/>
-            <bean class="com.anve.gold.web.aop.LogIntercepter"/>
+            <bean class="com.anve.gold.web.aop.LogInterceptor"/>
         </mvc:interceptor>
     </mvc:interceptors>
 </beans>

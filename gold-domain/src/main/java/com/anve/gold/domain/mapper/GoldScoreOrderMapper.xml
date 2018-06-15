@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
 <mapper namespace="com.anve.gold.domain.dao.GoldScoreOrderMapper" >
   <resultMap id="BaseResultMap" type="com.anve.gold.domain.dto.GoldScoreOrder" >
-    <result column="id" property="id" jdbcType="INTEGER" />
+    <id column="id" property="id" jdbcType="INTEGER" />
     <result column="created" property="created" jdbcType="BIGINT" />
     <result column="updated" property="updated" jdbcType="BIGINT" />
     <result column="order_no" property="orderNo" jdbcType="VARCHAR" />
@@ -20,6 +20,20 @@
     <result column="is_own" property="isOwn" jdbcType="BIT" />
     <result column="is_del" property="isDel" jdbcType="BIT" />
   </resultMap>
+  <sql id="Base_Column_List" >
+    id, created, updated, order_no, pay_bill_no, gift_name, goods_id, settlement, score_amount, 
+    gold_amount, coupon_id, coupon_type, status, user_id, phone, is_own, is_del
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from gold_score_order
+    where id = #{id,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from gold_score_order
+    where id = #{id,jdbcType=INTEGER}
+  </delete>
   <insert id="insert" parameterType="com.anve.gold.domain.dto.GoldScoreOrder" >
     <selectKey resultType="java.lang.Integer" keyProperty="id" order="AFTER" >
       SELECT LAST_INSERT_ID()
@@ -143,4 +157,78 @@
       </if>
     </trim>
   </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.anve.gold.domain.dto.GoldScoreOrder" >
+    update gold_score_order
+    <set >
+      <if test="created != null" >
+        created = #{created,jdbcType=BIGINT},
+      </if>
+      <if test="updated != null" >
+        updated = #{updated,jdbcType=BIGINT},
+      </if>
+      <if test="orderNo != null" >
+        order_no = #{orderNo,jdbcType=VARCHAR},
+      </if>
+      <if test="payBillNo != null" >
+        pay_bill_no = #{payBillNo,jdbcType=VARCHAR},
+      </if>
+      <if test="giftName != null" >
+        gift_name = #{giftName,jdbcType=VARCHAR},
+      </if>
+      <if test="goodsId != null" >
+        goods_id = #{goodsId,jdbcType=INTEGER},
+      </if>
+      <if test="settlement != null" >
+        settlement = #{settlement,jdbcType=DECIMAL},
+      </if>
+      <if test="scoreAmount != null" >
+        score_amount = #{scoreAmount,jdbcType=INTEGER},
+      </if>
+      <if test="goldAmount != null" >
+        gold_amount = #{goldAmount,jdbcType=DECIMAL},
+      </if>
+      <if test="couponId != null" >
+        coupon_id = #{couponId,jdbcType=INTEGER},
+      </if>
+      <if test="couponType != null" >
+        coupon_type = #{couponType,jdbcType=INTEGER},
+      </if>
+      <if test="status != null" >
+        status = #{status,jdbcType=INTEGER},
+      </if>
+      <if test="userId != null" >
+        user_id = #{userId,jdbcType=INTEGER},
+      </if>
+      <if test="phone != null" >
+        phone = #{phone,jdbcType=VARCHAR},
+      </if>
+      <if test="isOwn != null" >
+        is_own = #{isOwn,jdbcType=BIT},
+      </if>
+      <if test="isDel != null" >
+        is_del = #{isDel,jdbcType=BIT},
+      </if>
+    </set>
+    where id = #{id,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.anve.gold.domain.dto.GoldScoreOrder" >
+    update gold_score_order
+    set created = #{created,jdbcType=BIGINT},
+      updated = #{updated,jdbcType=BIGINT},
+      order_no = #{orderNo,jdbcType=VARCHAR},
+      pay_bill_no = #{payBillNo,jdbcType=VARCHAR},
+      gift_name = #{giftName,jdbcType=VARCHAR},
+      goods_id = #{goodsId,jdbcType=INTEGER},
+      settlement = #{settlement,jdbcType=DECIMAL},
+      score_amount = #{scoreAmount,jdbcType=INTEGER},
+      gold_amount = #{goldAmount,jdbcType=DECIMAL},
+      coupon_id = #{couponId,jdbcType=INTEGER},
+      coupon_type = #{couponType,jdbcType=INTEGER},
+      status = #{status,jdbcType=INTEGER},
+      user_id = #{userId,jdbcType=INTEGER},
+      phone = #{phone,jdbcType=VARCHAR},
+      is_own = #{isOwn,jdbcType=BIT},
+      is_del = #{isDel,jdbcType=BIT}
+    where id = #{id,jdbcType=INTEGER}
+  </update>
 </mapper>

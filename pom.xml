@@ -31,6 +31,7 @@
         <jedis.version>2.9.0</jedis.version>
         <rocketmq.version>4.2.0</rocketmq.version>
         <servlet.version>3.0.1</servlet.version>
+        <aspectj.version>1.8.7</aspectj.version>
         <local.repo.host>http://10.0.1.49:8081</local.repo.host>
     </properties>
 
